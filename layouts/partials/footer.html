@@ -1,5 +1,17 @@
 <footer>
     <div class="container">
-        <p>&copy; {{ now.Year }} {{ .Site.Title }}. {{ i18n "powered_by" | default "Built with" }} <a href="https://gohugo.io">Hugo</a> {{ i18n "and" | default "and" }} Rishi {{ i18n "theme" | default "theme" }}.</p>
+        {{ if .Site.Menus.footer }}
+        <nav class="footer-nav">
+            <ul>
+            {{ range .Site.Menus.footer }}
+                <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+            {{ end }}
+            </ul>
+        </nav>
+        {{ end }}
+        
+        <p class="footer-text">
+            &copy; {{ now.Year }} {{ .Site.Title }} | Built with Hugo and Rishi theme
+        </p>
     </div>
 </footer>

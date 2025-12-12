@@ -6,10 +6,9 @@
         <div class="header-nav">
             <nav>
                 <ul>
-                    <li><a href="{{ "/" | relLangURL }}">{{ i18n "home" | default "Home" }}</a></li>
-                    <li><a href="{{ "/archive" | relLangURL }}">{{ i18n "archive" | default "Archive" }}</a></li>
-                    <li><a href="{{ "/about" | relLangURL }}">{{ i18n "about" | default "About" }}</a></li>
-                    <li><a href="{{ "/newsletter" | relLangURL }}">{{ i18n "newsletter" | default "Newsletter" }}</a></li>
+                    {{ range .Site.Menus.main }}
+                    <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+                    {{ end }}
                 </ul>
             </nav>
             <div class="header-controls">
@@ -24,7 +23,7 @@
                 
                 {{ if .Site.Params.showThemeToggle }}
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <span id="theme-label">Auto</span>
+                    <span class="icon">{{ partial "svg.html" (dict "name" "sun") }}</span>
                 </button>
                 {{ end }}
             </div>

@@ -3,46 +3,51 @@
     const themeToggle = document.getElementById('theme-toggle');
     if (!themeToggle) return;
     
-    const themeLabel = document.getElementById('theme-label');
-    const themes = ['auto', 'light', 'dark'];
-    let currentIndex = 0;
+    const icon = themeToggle.querySelector('.icon');
+    const sunSVG = `{{ partial "svg.html" (dict "name" "sun") }}`;
+    const moonSVG = `{{ partial "svg.html" (dict "name" "moon") }}`;
+    const defaultTheme = '{{ .Site.Params.defaultTheme | default "auto" }}';
     
     function getSystemTheme() {
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
     
-    function applyTheme(theme) {
+    function getEffectiveTheme(theme) {
         if (theme === 'auto') {
-            const systemTheme = getSystemTheme();
-            document.documentElement.setAttribute('data-theme', systemTheme);
-        } else {
-            document.documentElement.setAttribute('data-theme', theme);
+            return getSystemTheme();
         }
+        return theme;
+    }
+    
+    function applyTheme(theme) {
+        const effectiveTheme = getEffectiveTheme(theme);
+        document.documentElement.setAttribute('data-theme', effectiveTheme);
+        icon.innerHTML = effectiveTheme === 'dark' ? moonSVG : sunSVG;
     }
     
     function setTheme(theme) {
         localStorage.setItem('theme', theme);
         applyTheme(theme);
-        themeLabel.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
     }
     
     // Initialize theme
-    const savedTheme = localStorage.getItem('theme') || 'auto';
-    currentIndex = themes.indexOf(savedTheme);
-    setTheme(savedTheme);
+    const savedTheme = localStorage.getItem('theme') || defaultTheme;
+    applyTheme(savedTheme);
     
     // Listen for system theme changes when in auto mode
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        const currentTheme = localStorage.getItem('theme');
+        const currentTheme = localStorage.getItem('theme') || defaultTheme;
         if (currentTheme === 'auto') {
             applyTheme('auto');
         }
     });
     
-    // Toggle through themes on click
+    // Toggle between light and dark on click
     themeToggle.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % themes.length;
-        setTheme(themes[currentIndex]);
+        const currentTheme = localStorage.getItem('theme') || defaultTheme;
+        const effectiveTheme = getEffectiveTheme(currentTheme);
+        const newTheme = effectiveTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
     });
 })();
 </script>

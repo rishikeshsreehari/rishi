@@ -1,5 +1,4 @@
-
-baseURL = "https://localhost:1313/"
+baseURL = "https://example.com/"
 languageCode = "en-us"
 title = "Rishi Theme Demo"
 theme = "rishi"
@@ -11,7 +10,7 @@ theme = "rishi"
   defaultTheme = "auto"
   
   # Homepage settings
-  useCustomHomepage = false  # Set to true to use layouts/partials/home_info.html
+  useCustomHomepage = true  # Set to true to use layouts/partials/home_info.html
   showRecentPosts = true     # Set to false to hide recent posts section
   showPopularPosts = true    # Set to false to hide popular posts section
   
@@ -71,25 +70,3 @@ theme = "rishi"
     name = "/Slash"
     url = "/slash"
     weight = 6
-
-
-
-  [[menu.footer]]
-    name = "Archive"
-    url = "/archive"
-    weight = 1
-  
-  [[menu.footer]]
-    name = "Contact"
-    url = "/contact"
-    weight = 2
-  
-  [[menu.footer]]
-    name = "RSS"
-    url = "/index.xml"
-    weight = 3
-  
-  [[menu.footer]]
-    name = "Privacy"
-    url = "/privacy"
-    weight = 4
