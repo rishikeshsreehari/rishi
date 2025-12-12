@@ -1,0 +1,48 @@
+<script>
+(function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+    
+    const themeLabel = document.getElementById('theme-label');
+    const themes = ['auto', 'light', 'dark'];
+    let currentIndex = 0;
+    
+    function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    
+    function applyTheme(theme) {
+        if (theme === 'auto') {
+            const systemTheme = getSystemTheme();
+            document.documentElement.setAttribute('data-theme', systemTheme);
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+    }
+    
+    function setTheme(theme) {
+        localStorage.setItem('theme', theme);
+        applyTheme(theme);
+        themeLabel.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+    }
+    
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme') || 'auto';
+    currentIndex = themes.indexOf(savedTheme);
+    setTheme(savedTheme);
+    
+    // Listen for system theme changes when in auto mode
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'auto') {
+            applyTheme('auto');
+        }
+    });
+    
+    // Toggle through themes on click
+    themeToggle.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % themes.length;
+        setTheme(themes[currentIndex]);
+    });
+})();
+</script>

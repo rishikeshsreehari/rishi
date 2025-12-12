@@ -1,0 +1,12 @@
+name = "Rishi"
+license = "MIT"
+licenselink = "https://github.com/yourusername/rishi/blob/main/LICENSE"
+description = "A minimal, monochrome Hugo theme"
+homepage = "https://github.com/yourusername/rishi"
+tags = ["minimal", "monochrome", "dark-mode", "blog", "clean"]
+features = ["dark-mode", "i18n", "responsive"]
+min_version = "0.112.0"
+
+[author]
+  name = "Rishikesh"
+  homepage = "https://rishikeshs.com"

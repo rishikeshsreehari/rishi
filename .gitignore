@@ -26,6 +26,8 @@ go.work.sum
 
 # env file
 .env
+examplesite/public/
+examplesite/.hugo_build.lock
 
 # Editor/IDE
 # .idea/

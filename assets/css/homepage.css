@@ -1,0 +1,66 @@
+/* Homepage */
+.homepage {
+  max-width: var(--max-width);
+}
+
+.greeting {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-lg);
+}
+
+.bio {
+  margin-bottom: var(--space-xl);
+}
+
+/* Posts sections */
+.posts-section {
+  margin-top: var(--space-xl);
+}
+
+.posts-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-md);
+  text-align: left;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-sm);
+  gap: var(--space-md);
+}
+
+.post-list li a {
+  flex: 1;
+  text-decoration: none;
+}
+
+.post-list li a:hover {
+  text-decoration: underline;
+}
+
+.post-year {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.view-all {
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
+.view-all a {
+  text-decoration: none;
+}
+
+.view-all a:hover {
+  text-decoration: underline;
+}

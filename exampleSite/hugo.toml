@@ -1,0 +1,53 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en"
+title = "Rishikesh Sreehari"
+theme = "rishi"
+
+
+[params]
+  description = "A minimal, monochrome blog"
+  showThemeToggle = true
+  showLanguageSwitcher = true  # Set to false to hide language switcher
+  
+  # Social links
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/yourusername"
+  
+  [[params.social]]
+    name = "twitter"
+    url = "https://twitter.com/yourusername"
+  
+  [[params.social]]
+    name = "email"
+    url = "mailto:your@email.com"
+  
+  [[params.social]]
+    name = "rss"
+    url = "/index.xml"
+
+
+
+# Language settings
+defaultContentLanguage = "en"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    
+  [languages.ar]
+    languageName = "العربية"
+    weight = 2
+    
+  [languages.ml]
+    languageName = "മലയാളം"
+    weight = 3
+
+[markup]
+  [markup.highlight]
+    style = "monokailight"
+    lineNos = false
+
+
+  

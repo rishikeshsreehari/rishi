@@ -1,0 +1,22 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    
+    {{- $base := resources.Get "css/base.css" -}}
+    {{- $header := resources.Get "css/header.css" -}}
+    {{- $footer := resources.Get "css/footer.css" -}}
+    {{- $homepage := resources.Get "css/homepage.css" -}}
+    {{- $socialIcons := resources.Get "css/social-icons.css" -}}
+    {{- $pages := resources.Get "css/pages.css" -}}
+    
+    {{- $css := slice $base $header $footer $homepage $socialIcons $pages | resources.Concat "css/main.css" -}}
+    {{- if hugo.IsProduction -}}
+        {{- $css = $css | minify | fingerprint -}}
+    {{- end -}}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    
+    {{ range .AlternativeOutputFormats -}}
+        <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+    {{ end -}}
+</head>

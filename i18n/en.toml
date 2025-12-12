@@ -1,0 +1,38 @@
+[home]
+other = "Home"
+
+[posts]
+other = "Posts"
+
+[about]
+other = "About"
+
+[powered_by]
+other = "Powered by"
+
+[and]
+other = "&"
+
+[theme]
+other = "theme"
+
+[read_more]
+other = "Read more"
+
+[tags]
+other = "Tags"
+
+[categories]
+other = "Categories"
+
+[recent_posts]
+other = "Recent Posts"
+
+[all_posts]
+other = "All Posts"
+
+[archive]
+other = "Archive"
+
+[newsletter]
+other = "Newsletter"

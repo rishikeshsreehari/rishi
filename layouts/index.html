@@ -1,0 +1,57 @@
+{{ define "main" }}
+<div class="homepage">
+    <div class="greeting">
+        <p>Hi, I'm <strong>Rishikesh</strong></p>
+    </div>
+    
+    <div class="bio">
+        <p>This is my webspace on the Internet where I share some of my thoughts and experiments. The posts here represent a sample of what I've been working on or thinking about.</p>
+        
+        <p>I'm currently looking for a full-time role or consulting opportunities. If you know of any interesting positions or projects, I'd love to <a href="mailto:your@email.com">hear from you</a>.</p>
+        
+        <p>This website also serves as home to my newsletter, <em>10+1 Things</em>, which has over 3,000 readers.</p>
+    </div>
+    
+    {{ if .Site.Params.social }}
+    <div class="social-links">
+        {{ range .Site.Params.social }}
+        <a href="{{ .url }}" aria-label="{{ .name }}" title="{{ .name | title }}" target="_blank" rel="noopener">
+            <span class="icon">{{ partial "svg.html" (dict "name" .name) }}</span>
+        </a>
+        {{ end }}
+    </div>
+    {{ end }}
+    
+    {{ $pages := where .Site.RegularPages "Type" "posts" }}
+    {{ $popular := where $pages "Params.popular" true }}
+    
+    {{ if $popular }}
+    <section class="posts-section">
+        <h2>{{ i18n "popular_posts" | default "Popular Posts" }}</h2>
+        <ul class="post-list">
+        {{ range first 5 $popular }}
+            <li>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <span class="post-year">{{ .Date.Format "2006" }}</span>
+            </li>
+        {{ end }}
+        </ul>
+    </section>
+    {{ end }}
+    
+    <section class="posts-section">
+        <h2>{{ i18n "recent_posts" | default "Recent Posts" }}</h2>
+        <ul class="post-list">
+        {{ range first 10 $pages }}
+            <li>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <span class="post-year">{{ .Date.Format "2006" }}</span>
+            </li>
+        {{ end }}
+        </ul>
+        <p class="view-all">
+            <a href="{{ "/archive" | relLangURL }}">{{ i18n "all_posts" | default "View all posts" }} →</a>
+        </p>
+    </section>
+</div>
+{{ end }}

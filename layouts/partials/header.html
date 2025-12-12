@@ -1,0 +1,33 @@
+<header>
+    <div class="container">
+        <div class="site-title">
+            <a href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
+        </div>
+        <div class="header-nav">
+            <nav>
+                <ul>
+                    <li><a href="{{ "/" | relLangURL }}">{{ i18n "home" | default "Home" }}</a></li>
+                    <li><a href="{{ "/archive" | relLangURL }}">{{ i18n "archive" | default "Archive" }}</a></li>
+                    <li><a href="{{ "/about" | relLangURL }}">{{ i18n "about" | default "About" }}</a></li>
+                    <li><a href="{{ "/newsletter" | relLangURL }}">{{ i18n "newsletter" | default "Newsletter" }}</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                {{ if and (.IsTranslated) (.Site.Params.showLanguageSwitcher) }}
+                <div class="language-switcher">
+                    <a href="{{ .RelPermalink }}" class="active">{{ .Language.Lang | upper }}</a>
+                    {{ range .Translations }}
+                    <a href="{{ .RelPermalink }}" lang="{{ .Language.Lang }}">{{ .Language.Lang | upper }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+                
+                {{ if .Site.Params.showThemeToggle }}
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span id="theme-label">Auto</span>
+                </button>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</header>

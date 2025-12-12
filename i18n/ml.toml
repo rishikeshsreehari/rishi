@@ -1,0 +1,32 @@
+[home]
+other = "ഹോം"
+
+[posts]
+other = "പോസ്റ്റുകൾ"
+
+[about]
+other = "കുറിച്ച്"
+
+[powered_by]
+other = "നൽകുന്നത്"
+
+[and]
+other = "ഒപ്പം"
+
+[theme]
+other = "തീം"
+
+[read_more]
+other = "കൂടുതൽ വായിക്കുക"
+
+[tags]
+other = "ടാഗുകൾ"
+
+[categories]
+other = "വിഭാഗങ്ങൾ"
+
+[recent_posts]
+other = "പുതിയ പോസ്റ്റുകൾ"
+
+[all_posts]
+other = "എല്ലാ പോസ്റ്റുകളും"

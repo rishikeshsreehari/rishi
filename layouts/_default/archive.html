@@ -1,0 +1,19 @@
+{{ define "main" }}
+<h1>Archive</h1>
+
+<p>All {{ len .Site.RegularPages }} posts, organized by year.</p>
+
+{{ range .Site.RegularPages.GroupByDate "2006" }}
+<section class="archive-year">
+    <h2>{{ .Key }}</h2>
+    <ul class="post-list-simple">
+        {{ range .Pages }}
+        <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <span class="post-date">{{ .Date.Format "Jan 2" }}</span>
+        </li>
+        {{ end }}
+    </ul>
+</section>
+{{ end }}
+{{ end }}
