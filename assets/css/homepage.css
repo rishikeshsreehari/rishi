@@ -1,25 +1,26 @@
-/* Homepage */
+/* Homepage - Kindle compatible, no flexbox */
+
 .homepage {
-  max-width: var(--max-width);
+  max-width: 42rem;
 }
 
 .greeting {
   font-size: 1.25rem;
-  margin-bottom: var(--space-lg);
+  margin-bottom: 1.5rem;
 }
 
 .bio {
-  margin-bottom: var(--space-xl);
+  margin-bottom: 2rem;
 }
 
 /* Posts sections */
 .posts-section {
-  margin-top: var(--space-xl);
+  margin-top: 2rem;
 }
 
 .posts-section h2 {
   font-size: 1.25rem;
-  margin-bottom: var(--space-md);
+  margin-bottom: 1rem;
   text-align: left;
 }
 
@@ -29,16 +30,16 @@
 }
 
 .post-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: var(--space-sm);
-  gap: var(--space-md);
+  margin-bottom: 0.5rem;
+  overflow: hidden; /* clearfix for floats */
 }
 
 .post-list li a {
-  flex: 1;
   text-decoration: none;
+  color: #1a1a1a;
+  display: block;
+  float: left;
+  width: 75%;
 }
 
 .post-list li a:hover {
@@ -46,21 +47,53 @@
 }
 
 .post-year {
-  font-family: var(--font-mono);
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.875rem;
-  color: var(--color-muted);
-  white-space: nowrap;
+  color: #666666;
+  float: right;
+  width: 20%;
+  text-align: right;
 }
 
 .view-all {
-  margin-top: var(--space-md);
+  margin-top: 1rem;
   text-align: center;
+  clear: both;
 }
 
 .view-all a {
   text-decoration: none;
+  color: #1a1a1a;
 }
 
 .view-all a:hover {
   text-decoration: underline;
+}
+
+/* Dark mode - both automatic and manual */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode) .post-list li a {
+    color: #e8e8e8;
+  }
+  
+  body:not(.light-mode) .post-year {
+    color: #999999;
+  }
+  
+  body:not(.light-mode) .view-all a {
+    color: #e8e8e8;
+  }
+}
+
+/* Manual dark mode toggle */
+body.dark-mode .post-list li a {
+  color: #e8e8e8;
+}
+
+body.dark-mode .post-year {
+  color: #999999;
+}
+
+body.dark-mode .view-all a {
+  color: #e8e8e8;
 }

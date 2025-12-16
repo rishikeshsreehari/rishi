@@ -1,30 +1,30 @@
-footer {
-  margin-top: var(--space-3xl);
-  padding: var(--space-2xl) 0;
-  border-top: 1px solid var(--border-color);
-}
+/* Footer - Kindle compatible, no flexbox */
 
-footer .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-lg);
+footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid #d0d0d0;
   text-align: center;
 }
 
+.footer-nav {
+  margin-bottom: 1.5rem;
+}
+
 .footer-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+.footer-nav ul li {
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
 .footer-nav a {
   text-decoration: none;
-  color: var(--text-color);
+  color: #1a1a1a;
   font-size: 0.9rem;
 }
 
@@ -35,5 +35,33 @@ footer .container {
 .footer-text {
   margin: 0;
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: #666666;
+}
+
+/* Dark mode - both automatic and manual */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode) footer {
+    border-top-color: #404040;
+  }
+  
+  body:not(.light-mode) .footer-nav a {
+    color: #e8e8e8;
+  }
+  
+  body:not(.light-mode) .footer-text {
+    color: #999999;
+  }
+}
+
+/* Manual dark mode toggle */
+body.dark-mode footer {
+  border-top-color: #404040;
+}
+
+body.dark-mode .footer-nav a {
+  color: #e8e8e8;
+}
+
+body.dark-mode .footer-text {
+  color: #999999;
 }

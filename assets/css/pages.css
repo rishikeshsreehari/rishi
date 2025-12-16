@@ -1,87 +1,99 @@
-/* Archive page */
-.archive-year {
-  font-family: var(--font-sans);
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: var(--space-xl);
-  margin-bottom: var(--space-md);
+/* Homepage - Kindle compatible, no flexbox */
+
+.homepage {
+  max-width: 42rem;
 }
 
-.archive-list {
+.greeting {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.bio {
+  margin-bottom: 2rem;
+}
+
+/* Posts sections */
+.posts-section {
+  margin-top: 2rem;
+}
+
+.posts-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.post-list {
   list-style: none;
   padding: 0;
 }
 
-.archive-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: var(--space-sm);
-  gap: var(--space-md);
+.post-list li {
+  margin-bottom: 0.5rem;
+  overflow: hidden; /* clearfix for floats */
 }
 
-.archive-list li a {
-  flex: 1;
+.post-list li a {
   text-decoration: none;
+  color: #1a1a1a;
+  display: block;
+  float: left;
+  width: 75%;
 }
 
-.archive-list li a:hover {
+.post-list li a:hover {
   text-decoration: underline;
 }
 
-.archive-date {
-  font-family: var(--font-mono);
+.post-year {
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.875rem;
-  color: var(--color-muted);
-  white-space: nowrap;
+  color: #666666;
+  float: right;
+  width: 20%;
+  text-align: right;
 }
 
-/* Single post */
-.post-meta {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--color-muted);
+.view-all {
+  margin-top: 1rem;
   text-align: center;
-  margin-bottom: var(--space-lg);
+  clear: both;
 }
 
-.post-content {
-  margin-top: var(--space-xl);
-}
-
-/* Tags */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin: var(--space-md) 0;
-}
-
-.tag {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid var(--color-border);
+.view-all a {
   text-decoration: none;
+  color: #1a1a1a;
 }
 
-.tag:hover {
-  background-color: var(--color-text);
-  color: var(--color-bg);
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--space-xl);
-  font-family: var(--font-mono);
-}
-
-.pagination a {
-  text-decoration: none;
-}
-
-.pagination a:hover {
+.view-all a:hover {
   text-decoration: underline;
+}
+
+/* Dark mode - both automatic and manual */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode) .post-list li a {
+    color: #e8e8e8;
+  }
+  
+  body:not(.light-mode) .post-year {
+    color: #999999;
+  }
+  
+  body:not(.light-mode) .view-all a {
+    color: #e8e8e8;
+  }
+}
+
+/* Manual dark mode toggle */
+body.dark-mode .post-list li a {
+  color: #e8e8e8;
+}
+
+body.dark-mode .post-year {
+  color: #999999;
+}
+
+body.dark-mode .view-all a {
+  color: #e8e8e8;
 }

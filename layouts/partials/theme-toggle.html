@@ -6,48 +6,38 @@
     const icon = themeToggle.querySelector('.icon');
     const sunSVG = `{{ partial "svg.html" (dict "name" "sun") }}`;
     const moonSVG = `{{ partial "svg.html" (dict "name" "moon") }}`;
-    const defaultTheme = '{{ .Site.Params.defaultTheme | default "auto" }}';
     
-    function getSystemTheme() {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // Check if user has saved preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Determine initial theme
+    let currentTheme;
+    if (savedTheme) {
+        currentTheme = savedTheme;
+    } else {
+        currentTheme = systemPrefersDark ? 'dark' : 'light';
     }
     
-    function getEffectiveTheme(theme) {
-        if (theme === 'auto') {
-            return getSystemTheme();
-        }
-        return theme;
-    }
-    
+    // Apply theme by adding/removing class on body
     function applyTheme(theme) {
-        const effectiveTheme = getEffectiveTheme(theme);
-        document.documentElement.setAttribute('data-theme', effectiveTheme);
-        icon.innerHTML = effectiveTheme === 'dark' ? moonSVG : sunSVG;
-    }
-    
-    function setTheme(theme) {
-        localStorage.setItem('theme', theme);
-        applyTheme(theme);
-    }
-    
-    // Initialize theme
-    const savedTheme = localStorage.getItem('theme') || defaultTheme;
-    applyTheme(savedTheme);
-    
-    // Listen for system theme changes when in auto mode
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        const currentTheme = localStorage.getItem('theme') || defaultTheme;
-        if (currentTheme === 'auto') {
-            applyTheme('auto');
+        if (theme === 'dark') {
+            document.body.classList.add('dark-mode');
+            icon.innerHTML = moonSVG;
+        } else {
+            document.body.classList.remove('dark-mode');
+            icon.innerHTML = sunSVG;
         }
-    });
+        localStorage.setItem('theme', theme);
+    }
     
-    // Toggle between light and dark on click
+    // Set initial theme
+    applyTheme(currentTheme);
+    
+    // Toggle on button click
     themeToggle.addEventListener('click', () => {
-        const currentTheme = localStorage.getItem('theme') || defaultTheme;
-        const effectiveTheme = getEffectiveTheme(currentTheme);
-        const newTheme = effectiveTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
+        const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+        applyTheme(newTheme);
     });
 })();
 </script>
